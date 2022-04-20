@@ -34,8 +34,8 @@ var redraw = function(payload) {
 var pnChannel = "raspi-tracker";
 
 var pubnub = new PubNub({
-  publishKey:   'pub-c-ae6fe267-47f3-45d6-8258-2aa525d31e81',
-  subscribeKey: 'sub-c-7b55dd4a-90c4-11ec-b249-a68c05a281ab'
+  publishKey:   'publish-key',
+  subscribeKey: 'subscribe-key'
 });
     
 document.querySelector('#action').addEventListener('click', function(){
