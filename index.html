@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+  <head>
+    <title>SucooteRobotics</title>
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.19.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </head>
+  <body>
+      <div class="bg"></div>
+     <div class="bg-others"> 
+    <div class="container">
+      <h1 >SucooteRobotics Interface</h1>
+        <!-- <center><hr style="height:2px; border:none; color:#ffffff; background-color:#ffffff; width:35%; margin: 0 auto 0 auto;"></center>
+        <p>by SucooteRobotics</p>   -->
+        <center><button class="btn btn-success col-sm-3" id="action">Go</button></center><br>
+        <center><div id="map-canvas"></div></center>
+        <div class="hiz">
+          <p>Hiz: </p>
+          <p>Mesafe: </p>
+        </div>
+        <video id="video" width="200" height="200" autoplay></video>
+        <button id="snap">Snap Photo</button>
+        <canvas id="canvas" width="200" height="200"></canvas>
+    </div>
+          </div>
+
+    <script src = "main.js">
+    
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyC8o2yKw4dRYrphH45U3WyvdCFKUjmaGM8&callback=initialize">
+      
+    </script>
+    <script>
+        function newPoint(time) {
+              var radius = 0.01;
+              var x = Math.random() * radius;
+              var y = Math.random() * radius;
+              return {lat:window.lat + y, lng:window.lng + x};
+                }
+              setInterval(function() {
+              pubnub.publish({channel:pnChannel, message:newPoint()});
+              }, 500);
+        
+        google.maps.event.addListener(map, 'click', function (e) {
+ 
+              //Determine the location where the user has clicked.
+              var location = e.latLng;
+
+              //Create a marker and placed it on the map.
+              var marker = new google.maps.Marker({
+                  position: location,
+                  map: map
+              });
+
+              //Attach click event handler to the marker.
+              google.maps.event.addListener(marker, "click", function (e) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: 'Latitude: ' + location.lat() + '<br />Longitude: ' + location.lng()
+                });
+                infoWindow.open(map, marker);
+              });
+        });
+    </script>
+  </body>
+</html>
