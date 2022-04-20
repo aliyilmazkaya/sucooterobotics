@@ -11,8 +11,8 @@ import sys
 pnChannel = "raspi-tracker";
 
 pnconfig = PNConfiguration()
-pnconfig.subscribe_key = "sub-c-7b55dd4a-90c4-11ec-b249-a68c05a281ab"
-pnconfig.publish_key = "pub-c-ae6fe267-47f3-45d6-8258-2aa525d31e81"
+pnconfig.subscribe_key = "subscribe-key"
+pnconfig.publish_key = "publish-key"
 pnconfig.ssl = False
  
 pubnub = PubNub(pnconfig)
